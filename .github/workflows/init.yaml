@@ -26,10 +26,11 @@ jobs:
         run: |
           cd ..
           zip -r ${{ github.sha }}.zip . -x '*.git*'
-          ls -la
+          pwd
       - name: archive zip
         uses: actions/upload-artifact@v2
         with:
           name: zipped-bundle
           path: ${{ github.sha }}.zip
+          if-no-files-found: error
        
