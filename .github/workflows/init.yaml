@@ -29,7 +29,7 @@ jobs:
           pwd
       - name: current dir output
         run: |
-          echo ::set-output name=current_dir::$(pwd)
+          echo ::set-output name=current_dir::$(cd -)
         id: param
       - name: archive zip
         uses: actions/upload-artifact@v2
