@@ -27,10 +27,14 @@ jobs:
           cd ..
           zip -r ${{ github.sha }}.zip . -x '*.git*'
           pwd
+      - name: current dir output
+        run: |
+          echo ::set-output name=current_dir::$(pwd)
+        id: param
       - name: archive zip
         uses: actions/upload-artifact@v2
         with:
           name: zipped-bundle
-          path: build
+          path: ${{ steps.param.outputs.current_dir }}/${{ github.sha }}.zip
           if-no-files-found: error
        
