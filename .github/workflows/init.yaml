@@ -24,7 +24,8 @@ jobs:
           if [ -f requirements.txt ];then pip3 install -r requirements.txt -t .;fi
       - name: create zip bundle
         run: |
-          zip -r ../${{ github.sha }}.zip . -x '*.git*'
+          cd ..
+          zip -r ${{ github.sha }}.zip . -x '*.git*'
           ls -la
       - name: archive zip
         uses: actions/upload-artifact@v2
