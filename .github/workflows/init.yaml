@@ -9,7 +9,12 @@ jobs:
     steps:
       - name: checkout code
         uses: actions/checkout@v2
+      - name: check if python3 exist
+        run: |
+          echo ::set-output name=python::$(python3  --version  | cut -d " " -f 1 || true)
+        id: python-version
       - name: setup python
+        if: steps.python-version.outputs.python != 'Python'
         uses: actions/setup-python@v2
       - name: install dependency 
         run: |
